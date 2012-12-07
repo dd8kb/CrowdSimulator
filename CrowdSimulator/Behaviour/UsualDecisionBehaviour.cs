@@ -13,9 +13,12 @@ namespace CrowdSimulator.Behaviour
             {
                 if (h.HumanType == HumanType.Dead)
                 {
-                    LeMe.Incident = h.Position;
-                    // TODO: change MovementBehaviour
-                    LeMe.MovementBehaviour = new UsualMovementBehaviour();
+                    if ((LeMe.Position - h.Position).Length() < 70.0f)
+                    {
+                        LeMe.Node = h.Position;
+                        // TODO: change MovementBehaviour
+                        LeMe.MovementBehaviour = new EvadeMovementBehaviour();
+                    }
                 }
             }
         }

@@ -32,6 +32,8 @@ namespace CrowdSimulator
 
         public Vec2 Incident { get; set; }
 
+        public Human Victim { get; set; }
+
         public HumanType HumanType { get; set; }
 
         public IMovementBehaviour MovementBehaviour { get; set; }
@@ -57,9 +59,10 @@ namespace CrowdSimulator
             return Crowd.GetRandomPosition();
         }
 
-        private void Kill()
+        public void Kill()
         {
             this.HumanType = HumanType.Dead;
+            this.MovementBehaviour=new DeadMovementBehaviour();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using CrowdSimulator.Behaviour;
 
 namespace CrowdSimulator
 {
@@ -19,9 +20,6 @@ namespace CrowdSimulator
         private int frameCount;
 
         private readonly Graphics graphics;
-
-        // UIIII!!!!!!!!!!!!!!!!!!!!!!!!
-        public static List<Vec2> speedOvers=new List<Vec2>();
 
         public Crowd(Bitmap Bitmap)
         {
@@ -56,6 +54,10 @@ namespace CrowdSimulator
                 if (this.humans[next].HumanType != HumanType.Agent)
                 {
                     this.humans[next].HumanType = HumanType.Agent;
+                    this.humans[next].MovementBehaviour = new AgentMovementBehaviour();
+                    int index = r.Next(0, this.humans.Count - 1);
+                    this.humans[next].Victim = this.humans[index];
+                    this.humans[index].HumanType = HumanType.Victim;
 
                     continue;
                 }
@@ -90,13 +92,23 @@ namespace CrowdSimulator
 
             foreach (var h in humans)
             {
-                graphics.FillEllipse(Brushes.Black,h.Position.X-2,h.Position.Y-2,4,4);
-            }
+                if (h.HumanType == HumanType.Normal)
+                {
+                    graphics.FillEllipse(Brushes.Black, h.Position.X - 2, h.Position.Y - 2, 4, 4);    
+                }
+                else if (h.HumanType == HumanType.Agent)
+                {
+                    graphics.FillEllipse(Brushes.Red, h.Position.X - 2, h.Position.Y - 2, 4, 4);
+                }
+                else if (h.HumanType==HumanType.Dead)
+                {
+                    graphics.FillEllipse(Brushes.GreenYellow, h.Position.X - 2, h.Position.Y - 2, 4, 4);
+                }
+                else if (h.HumanType == HumanType.Victim)
+                {
+                    graphics.FillEllipse(Brushes.DeepSkyBlue, h.Position.X - 2, h.Position.Y - 2, 4, 4);
+                }
 
-            //UI!!!!!!!!!!!!!!!!
-            foreach (var s in Crowd.speedOvers)
-            {
-                graphics.FillEllipse(Brushes.Red, s.X, s.Y, 2, 2);
             }
         }
 
@@ -107,9 +119,8 @@ namespace CrowdSimulator
 
         public static Vec2 GetRandomPosition()
         {
-            Random rnd = new Random();
+            var rnd = new Random();
             return new Vec2(rnd.Next(0,Crowd.width),rnd.Next(0,Crowd.height));
         }
-
     }
 }

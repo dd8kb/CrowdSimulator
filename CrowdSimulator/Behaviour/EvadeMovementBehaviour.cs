@@ -5,35 +5,33 @@ using System.Text;
 
 namespace CrowdSimulator.Behaviour
 {
-    public class AgentMovementBehaviour : IMovementBehaviour
+    public class EvadeMovementBehaviour : IMovementBehaviour
     {
-
         private Vec2 velocity;
 
         private Vec2 distance;
 
         private readonly float speed;
 
-        private Random rnd = new Random();
-
-        public AgentMovementBehaviour()
+        public EvadeMovementBehaviour()
         {
             velocity = new Vec2(0, 0);
 
             distance = new Vec2(0, 0);
 
-            speed = 2.4f;
+            speed = 3.0f;
         }
 
         public Vec2 Move(Human LeMe, IEnumerable<Human> NearestNeighbours)
         {
-            LeMe.Node = LeMe.Victim.Position;
-            if ((LeMe.Node - LeMe.Position).Length() < 14f)
+            if ((LeMe.Node - LeMe.Position).Length() > 100.0f)
             {
-                LeMe.Victim.Kill();
+                LeMe.Node = this.GetNewTarget(LeMe);
+                LeMe.MovementBehaviour = new UsualMovementBehaviour();
             }
 
             this.velocity = LeMe.Node - LeMe.Position;
+            this.velocity.Mul(-1.0f);
 
             this.velocity.Mul(1.0f / this.velocity.Length());
 
@@ -80,6 +78,5 @@ namespace CrowdSimulator.Behaviour
         {
             return LeMe.RequestNewRandomPosition();
         }
-
     }
 }

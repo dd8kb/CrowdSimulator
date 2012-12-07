@@ -44,7 +44,7 @@
             this.field.Dock = System.Windows.Forms.DockStyle.Fill;
             this.field.Location = new System.Drawing.Point(0, 0);
             this.field.Name = "field";
-            this.field.Size = new System.Drawing.Size(343, 329);
+            this.field.Size = new System.Drawing.Size(800, 501);
             this.field.TabIndex = 0;
             this.field.TabStop = false;
             // 
@@ -52,7 +52,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 329);
+            this.ClientSize = new System.Drawing.Size(800, 501);
             this.Controls.Add(this.field);
             this.Name = "Form1";
             this.Text = "Form1";

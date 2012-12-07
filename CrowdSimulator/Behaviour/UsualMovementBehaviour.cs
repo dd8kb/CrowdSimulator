@@ -61,18 +61,9 @@ namespace CrowdSimulator.Behaviour
                 this.distance = human.Position - LeMe.Position;
             }
 
-            float vLength = this.velocity.Length();
-
             this.velocity.Mul(1.0f / this.velocity.Length());
 
             this.velocity.Mul(this.speed);
-
-            //UII!!!!!!!!!!!!!!!!!!
-            if (this.velocity.Length() >= 3.0f)
-            {
-                Crowd.speedOvers.Add(LeMe.Position);
-                this.velocity = this.velocity.Mul(0.8f);
-            }
 
             LeMe.Position = LeMe.Position + this.velocity;
 
