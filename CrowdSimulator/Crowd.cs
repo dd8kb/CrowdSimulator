@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using CrowdSimulator.Behaviour;
+using CrowdSimulator.Human_Factories;
 
 namespace CrowdSimulator
 {
-    class Crowd
+    public class Crowd
     {
         private readonly List<Human> humans;
 
@@ -21,48 +21,31 @@ namespace CrowdSimulator
 
         private readonly Graphics graphics;
 
+        private static readonly Random Rnd = new Random(DateTime.Now.Millisecond);
+
         public Crowd(Bitmap Bitmap)
         {
             this.bitmap = Bitmap;
             this.humans = new List<Human>();
             this.field = new Field(Bitmap.Width, Bitmap.Height);
-            Crowd.height = Bitmap.Height;
-            Crowd.width = Bitmap.Width;
+            height = Bitmap.Height;
+            width = Bitmap.Width;
             this.graphics = Graphics.FromImage(bitmap);
         }
 
         public void Init(int Humans, int Assassins)
         {
-            var total = Humans + Assassins;
-            var row = (int)Math.Sqrt(total);
-            var xIncrement = this.bitmap.Width / row;
-            var yIncrement = this.bitmap.Height / row;
-            var r = new Random();
-            
-            for (int x = 0; x < row; x++)
+            var agentFactory = new AgentFactory();
+            var humanFactory = new HumanFactory();
+
+            for (int i = 0; i < Humans; i++)
             {
-                for (int y = 0; y < row; y++)
-                {
-                    this.humans.Add(new Human(HumanType.Normal, new Vec2( x * xIncrement, y * yIncrement), new Vec2(r.Next(0,this.bitmap.Width),r.Next(0,this.bitmap.Height))));
-                }
+                humanFactory.CreateHuman(humans);
             }
 
             for (int i = 0; i < Assassins; i++)
             {
-                var next = r.Next(0, this.humans.Count - 1);
-
-                if (this.humans[next].HumanType != HumanType.Agent)
-                {
-                    this.humans[next].HumanType = HumanType.Agent;
-                    this.humans[next].MovementBehaviour = new AgentMovementBehaviour();
-                    int index = r.Next(0, this.humans.Count - 1);
-                    this.humans[next].Victim = this.humans[index];
-                    this.humans[index].HumanType = HumanType.Victim;
-
-                    continue;
-                }
-
-                i--;
+                agentFactory.CreateHuman(humans);
             }
 
             field.Update(this.humans);
@@ -106,7 +89,7 @@ namespace CrowdSimulator
                 }
                 else if (h.HumanType == HumanType.Victim)
                 {
-                    graphics.FillEllipse(Brushes.DeepSkyBlue, h.Position.X - 2, h.Position.Y - 2, 4, 4);
+                    graphics.FillRectangle(Brushes.DeepSkyBlue, h.Position.X - 2, h.Position.Y - 2, 4, 4);
                 }
 
             }
@@ -119,8 +102,7 @@ namespace CrowdSimulator
 
         public static Vec2 GetRandomPosition()
         {
-            var rnd = new Random();
-            return new Vec2(rnd.Next(0,Crowd.width),rnd.Next(0,Crowd.height));
+            return new Vec2(Rnd.Next(0, width), Rnd.Next(0, height));
         }
     }
 }

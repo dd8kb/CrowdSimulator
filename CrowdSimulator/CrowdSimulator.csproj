@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Human Factories\AgentFactory.cs" />
+    <Compile Include="Human Factories\HumanFactory.cs" />
     <Compile Include="Behaviour\AgentMovementBehaviour.cs" />
     <Compile Include="Behaviour\DeadMovementBehaviour.cs" />
     <Compile Include="Behaviour\EvadeMovementBehaviour.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Human Factories\IHumanFactory.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="Behaviour\IMovementBehaviour.cs" />
     <Compile Include="Program.cs" />
