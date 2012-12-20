@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CrowdSimulator.Behaviour
 {
@@ -10,11 +7,6 @@ namespace CrowdSimulator.Behaviour
         public Vec2 Move(Human LeMe, IEnumerable<Human> NearestNeighbours)
         {
             return LeMe.Position;
-        }
-
-        private Vec2 GetNewTarget(Human LeMe)
-        {
-            return LeMe.RequestNewRandomPosition();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace CrowdSimulator
 
             this.crowd = new Crowd(image);
 
-            this.crowd.Init(200, 5);
+            this.crowd.Init(400, 3);
 
             this.ticker.Start();
         }

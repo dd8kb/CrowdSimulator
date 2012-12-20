@@ -40,12 +40,12 @@ namespace CrowdSimulator
 
             for (int i = 0; i < Humans; i++)
             {
-                humanFactory.CreateHuman(humans);
+                humans.Add(humanFactory.CreateHuman());
             }
 
             for (int i = 0; i < Assassins; i++)
             {
-                agentFactory.CreateHuman(humans);
+                humans.Add(agentFactory.CreateHuman(humans));
             }
 
             field.Update(this.humans);

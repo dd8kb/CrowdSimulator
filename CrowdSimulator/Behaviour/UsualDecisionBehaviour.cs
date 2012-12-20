@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CrowdSimulator.Behaviour
 {
@@ -16,7 +13,7 @@ namespace CrowdSimulator.Behaviour
                     if ((LeMe.Position - h.Position).Length() < 70.0f)
                     {
                         LeMe.Node = h.Position;
-                        // TODO: change MovementBehaviour
+
                         LeMe.MovementBehaviour = new EvadeMovementBehaviour();
                     }
                 }

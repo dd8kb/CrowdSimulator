@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CrowdSimulator
 {
@@ -21,25 +18,25 @@ namespace CrowdSimulator
             this.y = y;
         }
 
-        public Vec2(float val)
+        public Vec2(float Val)
         {
-            x = val;
-            y = val;
+            x = Val;
+            y = Val;
         }
 
-        public static Vec2 operator +(Vec2 a, Vec2 b)
+        public static Vec2 operator +(Vec2 A, Vec2 B)
         {
-            return new Vec2(a.X + b.X, a.Y + b.Y);
+            return new Vec2(A.X + B.X, A.Y + B.Y);
         }
 
-        public static Vec2 operator -(Vec2 a, Vec2 b)
+        public static Vec2 operator -(Vec2 A, Vec2 B)
         {
-            return new Vec2(a.X - b.X, a.Y - b.Y);
+            return new Vec2(A.X - B.X, A.Y - B.Y);
         }
 
-        public static bool operator ==(Vec2 a, Vec2 b)
+        public static bool operator ==(Vec2 A, Vec2 B)
         {
-            if (a.x == b.x && a.y == b.y)
+            if (A.x == B.x && A.y == B.y)
             {
                 return true;
             }
@@ -49,9 +46,9 @@ namespace CrowdSimulator
             }
         }
 
-        public static bool operator !=(Vec2 a, Vec2 b)
+        public static bool operator !=(Vec2 A, Vec2 B)
         {
-            if (a.x == b.x && a.y == b.y)
+            if (A.x == B.x && A.y == B.y)
             {
                 return false;
             }
@@ -61,10 +58,10 @@ namespace CrowdSimulator
             }
         }
 
-        public Vec2 Mul(float f)
+        public Vec2 Mul(float F)
         {
-            x *= f;
-            y *= f;
+            x *= F;
+            y *= F;
 
             return this;
         }

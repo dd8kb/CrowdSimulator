@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviour\AgentDecisionBehaviour.cs" />
     <Compile Include="Human Factories\AgentFactory.cs" />
     <Compile Include="Human Factories\HumanFactory.cs" />
     <Compile Include="Behaviour\AgentMovementBehaviour.cs" />

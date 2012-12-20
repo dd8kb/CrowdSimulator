@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CrowdSimulator.Behaviour
 {
@@ -13,8 +11,6 @@ namespace CrowdSimulator.Behaviour
         private Vec2 distance;
 
         private readonly float speed;
-
-        private Random rnd = new Random();
 
         public AgentMovementBehaviour()
         {
@@ -28,6 +24,7 @@ namespace CrowdSimulator.Behaviour
         public Vec2 Move(Human LeMe, IEnumerable<Human> NearestNeighbours)
         {
             LeMe.Node = LeMe.Victim.Position;
+
             if ((LeMe.Node - LeMe.Position).Length() < 14f)
             {
                 LeMe.Victim.Kill();
@@ -75,11 +72,5 @@ namespace CrowdSimulator.Behaviour
 
             return LeMe.Position;
         }
-
-        private Vec2 GetNewTarget(Human LeMe)
-        {
-            return LeMe.RequestNewRandomPosition();
-        }
-
     }
 }

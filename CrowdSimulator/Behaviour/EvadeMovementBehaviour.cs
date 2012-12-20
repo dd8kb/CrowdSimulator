@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CrowdSimulator.Behaviour
 {
@@ -27,7 +25,15 @@ namespace CrowdSimulator.Behaviour
             if ((LeMe.Node - LeMe.Position).Length() > 100.0f)
             {
                 LeMe.Node = this.GetNewTarget(LeMe);
-                LeMe.MovementBehaviour = new UsualMovementBehaviour();
+
+                if (LeMe.HumanType == HumanType.Agent)
+                {
+                    LeMe.MovementBehaviour = new AgentMovementBehaviour();
+                }
+                else
+                {
+                    LeMe.MovementBehaviour = new UsualMovementBehaviour();
+                }
             }
 
             this.velocity = LeMe.Node - LeMe.Position;
