@@ -5,11 +5,11 @@ The basic idea was to create a simple simulation of people walking around. The n
 Implementation
 ---------------
 With the implementation style we used in our program, we wanted to keep it simple to add more decision and movement behaviours. Therefore we were in need to make use of the strategy pattern. So we are also able to change the behaviour and the movement of single people during runtime.
-	//Set the MovementBehaviour
-	Human.MovementBehaviour = new EvadeMovementBehaviour();
+    //Set the MovementBehaviour
+    Human.MovementBehaviour = new EvadeMovementBehaviour();
 Also we thought about using the factory pattern to avoid too much of duplicated code.
-	//Make use of Factory
-	Human temp = humanFactory.CreateHuman();
+    //Make use of Factory
+    Human temp = humanFactory.CreateHuman();
 
 Next Steps
 ----------
